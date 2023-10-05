@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positive or Negative Number Checker</title>
+</head>
+<script>
+    function check() {
+        var x = parseInt(document.getElementById("x").value);
+        var result = "";
+
+        if (x > 0) {
+            result = "Positive";
+        } else if (x < 0) {
+            result = "Negative";
+        } else {
+            result = "Zero";
+        }
+        document.getElementById("result").textContent = result;
+    }
+</script>
+<body>
+    <center>
+        Enter a number: <input type="text" id="x"><br><br>
+        <button type="button" onclick="check()">Check</button>
+        <p id="result"></p>
+    </center>
+</body>
+</html>

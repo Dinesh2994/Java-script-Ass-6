@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        fieldset {
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        table {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        input[type="text"] {
+            width: 20%;
+            margin-bottom: 10px;
+            height: 40px;
+        }
+
+        input[type="button"] {
+            width: 70px;
+            height: 40px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>Simple Calculator</legend>
+        <table>
+            <tr>
+                <td colspan="4">
+                    <input type="text" id="result" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" value="1" onclick="addToResult(1)"></td>
+                <td><input type="button" value="2" onclick="addToResult(2)"></td>
+                <td><input type="button" value="3" onclick="addToResult(3)"></td>
+                <td><input type="button" value="/" onclick="addToResult('/')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="1" onclick="addToResult(1)"></td>
+                <td><input type="button" value="2" onclick="addToResult(2)"></td>
+                <td><input type="button" value="3" onclick="addToResult(3)"></td>
+                <td><input type="button" value="/" onclick="addToResult('/')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="4" onclick="addToResult(4)"></td>
+                <td><input type="button" value="5" onclick="addToResult(5)"></td>
+                <td><input type="button" value="6" onclick="addToResult(6)"></td>
+                <td><input type="button" value="-" onclick="addToResult('-')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="7" onclick="addToResult(7)"></td>
+                <td><input type="button" value="8" onclick="addToResult(8)"></td>
+                <td><input type="button" value="9" onclick="addToResult(9)"></td>
+                <td><input type="button" value="+" onclick="addToResult('+')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="C" onclick="clearResult()"></td>
+                <td><input type="button" value="0" onclick="addToResult(0)"></td>
+                <td><input type="button" value="=" onclick="calculateResult()"></td>
+                <td><input type="button" value="*" onclick="addToResult('*')"></td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <script>
+        document.addEventListener("keydown", function (event) {
+            const key = event.key;
+
+            if (!isNaN(key) || key === "+" || key === "-" || key === "*" || key === "/") {
+                addToResult(key);
+            } else if (key === "Enter") {
+                calculateResult();
+            } else if (key === "Escape") {
+                clearResult();
+            }
+        });
+
+        function addToResult(value) {
+            document.getElementById("result").value += value;
+        }
+
+        function clearResult() {
+            document.getElementById("result").value = '';
+        }
+
+        function calculateResult() {
+            try {
+                const expression = document.getElementById("result").value;
+                const result = eval(expression);
+                document.getElementById("result").value = result;
+            } catch (error) {
+                document.getElementById("result").value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
